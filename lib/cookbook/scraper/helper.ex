@@ -5,7 +5,7 @@ defmodule Cookbook.Scraper.Helper do
 
   @doc """
   Takes a list of `attributes` (as given by `&Floki.find/2`) and returns the
-  value of the attribute specificed by `attr_name`
+  value of the attribute specified by `attr_name`
   """
   @spec attribute_value([{String.t(), String.t()}], String.t()) :: String.t() | nil
   def attribute_value(attributes, attr_name) when is_list(attributes) and is_binary(attr_name) do
