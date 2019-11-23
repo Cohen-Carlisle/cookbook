@@ -12,7 +12,7 @@ defmodule Cookbook.Scraper.HelloFresh do
   The third parameter is used in unit testing to avoid doing an HTTP call.
   """
   @spec scrape(integer(), integer(), String.t() | nil) ::
-          [%{name: String.t(), img_src: String.t()}]
+          [%{name: String.t(), img_url: String.t()}]
   def scrape(year, week, endpoint_html \\ nil)
       when is_integer(year) and year >= 2017 and week in 1..53 do
     # re: guard clause: 52 weeks = 364 days, so occasionally a year will need 53
@@ -56,7 +56,7 @@ defmodule Cookbook.Scraper.HelloFresh do
     Enum.map(elements, fn {_tag, attrs, _children} ->
       %{
         name: attrs |> Helper.attribute_value("alt"),
-        img_src: attrs |> Helper.attribute_value("src") |> full_size_image_url()
+        img_url: attrs |> Helper.attribute_value("src") |> full_size_image_url()
       }
     end)
   end
