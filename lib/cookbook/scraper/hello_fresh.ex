@@ -115,7 +115,6 @@ defmodule Cookbook.Scraper.HelloFresh do
     nil
   end
 
-  # TODO match [note]
   defp note(meal_element) do
     meal_element |> Floki.find("div > div > span:nth-of-type(2)") |> do_note()
   end
