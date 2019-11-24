@@ -15,7 +15,7 @@ Repo.transaction(fn ->
   Enum.each(all_meals, fn meal ->
     Repo.insert!(
       Meal.changeset(%Meal{}, meal),
-      on_conflict: {:replace, [:img_url, :updated_at]},
+      on_conflict: {:replace, ~w[img_url time note updated_at]a},
       conflict_target: :name
     )
   end)
