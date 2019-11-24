@@ -12,7 +12,9 @@ defmodule Cookbook.Repo.Migrations.PopulateMeals do
 
     SET statement_timeout = 0;
     SET lock_timeout = 0;
-    SET idle_in_transaction_session_timeout = 0;
+    -- this optin is not supported on gigalixir. if present, you get:
+    -- (Postgrex.Error) ERROR 42704 (undefined_object) unrecognized configuration parameter "idle_in_transaction_session_timeout"
+    -- SET idle_in_transaction_session_timeout = 0;
     SET client_encoding = 'UTF8';
     SET standard_conforming_strings = on;
     SELECT pg_catalog.set_config('search_path', '', false);
