@@ -19,7 +19,7 @@ defmodule Cookbook.Scraper.HelloFresh do
     endpoint_html(year, week, endpoint_html)
     |> parse_meal_elements()
     |> warn_if_no_meals({year, week, endpoint_html})
-    |> elements_to_meals()
+    |> elements_to_meals(year, week)
   end
 
   defp endpoint_html(year, week, nil) do
@@ -63,13 +63,17 @@ defmodule Cookbook.Scraper.HelloFresh do
     meals
   end
 
-  defp elements_to_meals(elements) do
+  defp elements_to_meals(elements, year, week) do
+    seen = seen(year, week)
+
     Enum.map(elements, fn element ->
       %{
         name: name(element),
         img_url: img_url(element),
         time: time(element),
-        note: note(element)
+        note: note(element),
+        first_seen: seen,
+        last_seen: seen
       }
     end)
   end
@@ -111,6 +115,7 @@ defmodule Cookbook.Scraper.HelloFresh do
     nil
   end
 
+  # TODO match [note]
   defp note(meal_element) do
     meal_element |> Floki.find("div > div > span:nth-of-type(2)") |> do_note()
   end
@@ -121,5 +126,10 @@ defmodule Cookbook.Scraper.HelloFresh do
 
   defp do_note([]) do
     nil
+  end
+
+  defp seen(year, week) do
+    days = (year - 2017) * 7 * 52 + week * 7
+    Date.add(~D[2016-12-24], days)
   end
 end

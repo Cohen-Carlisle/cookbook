@@ -7,6 +7,8 @@ defmodule Cookbook.Meal do
     field :img_url, :string
     field :time, :integer
     field :note, :string
+    field :first_seen, :date
+    field :last_seen, :date
 
     timestamps()
   end
@@ -14,8 +16,8 @@ defmodule Cookbook.Meal do
   @doc false
   def changeset(meal, attrs) do
     meal
-    |> cast(attrs, [:name, :img_url, :time, :note])
-    |> validate_required([:name, :img_url])
+    |> cast(attrs, ~w[name img_url time note first_seen last_seen]a)
+    |> validate_required(~w[name img_url first_seen last_seen]a)
     |> unique_constraint(:name)
   end
 end
