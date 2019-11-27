@@ -1082,6 +1082,7 @@ defmodule Cookbook.Repo.Migrations.PopulateMeals do
     """
     |> String.split(";\n")
     |> Enum.each(&execute/1)
+
     # without executing each command separately, you get:
     # (Postgrex.Error) ERROR 42601 (syntax_error) cannot insert multiple commands into a prepared statement
   end

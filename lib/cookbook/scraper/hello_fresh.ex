@@ -7,12 +7,11 @@ defmodule Cookbook.Scraper.HelloFresh do
 
   @doc """
   Scrapes the HelloFresh meals for the given year and week, returning a list
-  maps specifying each item's name and picture URL.
+  maps, each suitable for creating a Meal changeset.
 
   The third parameter is used in unit testing to avoid doing an HTTP call.
   """
-  @spec scrape(integer(), integer(), String.t() | nil) ::
-          [%{name: String.t(), img_url: String.t()}]
+  @spec scrape(integer(), integer(), String.t() | nil) :: [map()]
   def scrape(year, week, endpoint_html \\ nil)
       when is_integer(year) and year >= 2017 and week in 1..53 do
     # re: guard clause: 52 weeks = 364 days, so occasionally a year will need 53
