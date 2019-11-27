@@ -1,0 +1,32 @@
+<h1>Listing Meals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Img url</th>
+      <th>Time</th>
+      <th>Note</th>
+      <th>First seen</th>
+      <th>Last seen</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for meal <- @meals do %>
+    <tr>
+      <td><%= meal.name %></td>
+      <td><%= meal.img_url %></td>
+      <td><%= meal.time %></td>
+      <td><%= meal.note %></td>
+      <td><%= meal.first_seen %></td>
+      <td><%= meal.last_seen %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.meal_path(@conn, :show, meal) %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

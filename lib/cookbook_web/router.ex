@@ -17,6 +17,7 @@ defmodule CookbookWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/meals", MealController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.

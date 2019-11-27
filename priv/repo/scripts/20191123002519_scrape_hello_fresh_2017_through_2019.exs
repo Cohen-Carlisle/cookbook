@@ -1,4 +1,5 @@
-alias Cookbook.{Meal, Repo}
+alias Cookbook.Repo
+alias Cookbook.Menu.Meal
 alias Cookbook.Scraper.HelloFresh
 
 year_week_tuples = for(year <- 2017..2019, week <- 1..52, do: {year, week})

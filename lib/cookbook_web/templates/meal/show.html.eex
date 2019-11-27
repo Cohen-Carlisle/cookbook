@@ -1,0 +1,37 @@
+<h1>Show Meal</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @meal.name %>
+  </li>
+
+  <li>
+    <strong>Img url:</strong>
+    <%= @meal.img_url %>
+  </li>
+
+  <li>
+    <strong>Time:</strong>
+    <%= @meal.time %>
+  </li>
+
+  <li>
+    <strong>Note:</strong>
+    <%= @meal.note %>
+  </li>
+
+  <li>
+    <strong>First seen:</strong>
+    <%= @meal.first_seen %>
+  </li>
+
+  <li>
+    <strong>Last seen:</strong>
+    <%= @meal.last_seen %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: Routes.meal_path(@conn, :index) %></span>

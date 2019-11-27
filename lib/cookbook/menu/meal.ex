@@ -1,4 +1,4 @@
-defmodule Cookbook.Meal do
+defmodule Cookbook.Menu.Meal do
   use Ecto.Schema
   import Ecto.Changeset
 
