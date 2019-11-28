@@ -7,17 +7,24 @@ defmodule Cookbook.Menu do
   alias Cookbook.Repo
 
   alias Cookbook.Menu.Meal
+  alias Cookbook.SqlLike
 
   @doc """
   Returns the list of meals.
 
   ## Examples
 
-      iex> list_meals()
+      iex> list_meals(%{})
       [%Meal{}, ...]
 
   """
-  def list_meals do
+  def list_meals(%{"q" => search_term}) do
+    sanitized_like_string = "%" <> SqlLike.sanitize(search_term) <> "%"
+    query = from(m in Meal, where: ilike(m.name, ^sanitized_like_string))
+    Repo.all(query)
+  end
+
+  def list_meals(_params) do
     Repo.all(Meal)
   end
 

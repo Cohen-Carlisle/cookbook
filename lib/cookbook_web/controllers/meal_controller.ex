@@ -3,8 +3,8 @@ defmodule CookbookWeb.MealController do
 
   alias Cookbook.Menu
 
-  def index(conn, _params) do
-    meals = Menu.list_meals()
+  def index(conn, params) do
+    meals = Menu.list_meals(params)
     render(conn, "index.html", meals: meals)
   end
 
