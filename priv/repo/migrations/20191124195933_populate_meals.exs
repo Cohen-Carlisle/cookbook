@@ -17,7 +17,9 @@ defmodule Cookbook.Repo.Migrations.PopulateMeals do
     -- SET idle_in_transaction_session_timeout = 0;
     SET client_encoding = 'UTF8';
     SET standard_conforming_strings = on;
-    SELECT pg_catalog.set_config('search_path', '', false);
+    -- this causes the next migration to fail if run in the same session:
+    -- (Postgrex.Error) ERROR 3F000 (invalid_schema_name) no schema has been selected to create in
+    -- SELECT pg_catalog.set_config('search_path', '', false);
     SET check_function_bodies = false;
     SET xmloption = content;
     SET client_min_messages = warning;
