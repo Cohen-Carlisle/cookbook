@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :cookbook,
-  ecto_repos: [Cookbook.Repo]
+  ecto_repos: [Cookbook.Repo],
+  env: Mix.env()
 
 # Configures the endpoint
 config :cookbook, CookbookWeb.Endpoint,

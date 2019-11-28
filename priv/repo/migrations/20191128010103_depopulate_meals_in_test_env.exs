@@ -2,7 +2,7 @@ defmodule Cookbook.Repo.Migrations.DepopulateMealsInTestEnv do
   use Ecto.Migration
 
   def up do
-    if Mix.env() == :test do
+    if Application.fetch_env!(:cookbook, :env) == :test do
       """
       DELETE FROM public.meals WHERE id <= 1830;
       """
@@ -11,7 +11,7 @@ defmodule Cookbook.Repo.Migrations.DepopulateMealsInTestEnv do
   end
 
   def down do
-    if Mix.env() == :test do
+    if Application.fetch_env!(:cookbook, :env) == :test do
       """
       --
       -- PostgreSQL database dump
