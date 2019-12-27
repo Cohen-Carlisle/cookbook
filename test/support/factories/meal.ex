@@ -12,6 +12,13 @@ defmodule Cookbook.MealFactory do
   end
 
   def valid_attrs do
-    %{first_seen: ~D[2010-04-17], img_url: "some img_url", last_seen: ~D[2010-04-17], name: inspect(make_ref()), note: "some note", time: 42}
+    %{
+      first_seen: ~D[2010-04-17],
+      img_url: "some img_url",
+      last_seen: ~D[2010-04-17],
+      name: inspect(make_ref()),
+      note: "some note",
+      time: 42
+    }
   end
 end

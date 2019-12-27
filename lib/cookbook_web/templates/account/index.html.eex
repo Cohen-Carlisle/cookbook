@@ -1,0 +1,5 @@
+<%= form_for @conn, Routes.account_path(@conn, :login), fn f -> %>
+  <%= label(f, :username, "Username") %>
+  <%= text_input(f, :username) %>
+  <%= submit("Login") %>
+<% end %>
